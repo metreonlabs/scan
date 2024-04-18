@@ -18,7 +18,7 @@
                                 <p>Home</p>
                             </div>
                         </RouterLink>
-                        <a target="_blank" href="https://metreon.gitbook.io/metreon-docs/">
+                        <a target="_blank" href="https://docs.metreon.xyz/">
                             <div :class="'tab_item'">
                                 <p>Docs</p>
                             </div>
