@@ -23,7 +23,7 @@
                                 <p>Docs</p>
                             </div>
                         </a>
-                        <a target="_blank" href="https://beamre.netlify.app">
+                        <a target="_blank" href="https://bridge.metreon.xyz">
                             <div :class="'tab_item'">
                                 <p>Beamre Bridge</p>
                                 <OutIcon />
