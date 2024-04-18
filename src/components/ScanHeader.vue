@@ -1,13 +1,18 @@
 <template>
     <section id="section">
         <div class="app_width">
-            <header>
-                <div class="tabs" :style="$route.name == 'scan' ? { width: '100%', justifyContent: 'space-between' } : {}">
+            <header id="main_header">
+                <div class="logo-2">
+                    <ScanLogo />
+                </div>
+
+                <div class="tabs" ref="menu"
+                    :style="$route.name == 'scan' ? { width: '100%', justifyContent: 'space-between' } : {}">
                     <div class="logo">
                         <ScanLogo />
                     </div>
 
-                    <div class="items" :style="{ display: 'flex', gap: '60px' }">
+                    <div class="items">
                         <RouterLink to="/">
                             <div class="tab_item">
                                 <p>Home</p>
@@ -44,6 +49,14 @@
                         <SunIcon />
                     </div>
                 </div>
+                <div class="handburger">
+                    <div ref="handburger" id="handburger" v-on:click="onDrawer()">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
             </header>
         </div>
     </section>
@@ -54,7 +67,7 @@ import ScanLogo from '../components/icons/ScanLogo.vue';
 import SearchIcon from '../components/icons/SearchIcon.vue';
 import SunIcon from '../components/icons/SunIcon.vue';
 import OutIcon from './icons/OutIcon.vue';
-</script >
+</script>
 
 <script>
 import { notify } from '../reactives/notify';
@@ -65,6 +78,15 @@ export default {
         };
     },
     methods: {
+        onDrawer() {
+            this.$refs["handburger"].classList.toggle("open");
+            this.$refs["menu"].classList.toggle("open-menu");
+            document.body.classList.toggle("modal");
+        },
+        determineGlass() {
+            const header = document.getElementById('main_header');
+            header.classList.toggle('glass', window.scrollY > 850);
+        },
         goSearch: function () {
             if (this.search == '') {
                 notify.push({
@@ -78,6 +100,18 @@ export default {
             this.$router.go(`/${this.search}`);
             this.search = '';
         }
+    },
+    mounted() {
+        document.querySelectorAll('.items a').forEach(element => {
+            element.addEventListener('click', () => {
+                context.onDrawer();
+            });
+        });
+        this.determineGlass();
+        const context = this;
+        window.addEventListener('scroll', function () {
+            context.determineGlass();
+        });
     }
 };
 </script>
@@ -158,6 +192,11 @@ header {
     align-items: center;
 }
 
+.items {
+    display: flex;
+    gap: 60px;
+}
+
 .tab_item p {
     color: var(--text-dimmed, #6C6E73);
     font-size: 16px;
@@ -190,5 +229,154 @@ a .tab_item svg {
     justify-content: center;
     width: 40px;
     height: 40px;
+}
+
+.handburger {
+    display: none;
+    cursor: pointer;
+}
+
+.glass #handburger span {
+    background: #0C1A33;
+}
+
+.logo-2 {
+    display: none;
+}
+
+@media screen and (max-width: 1000px) {
+    .search {
+        display: none;
+    }
+
+    .logo {
+        display: none;
+    }
+
+    .logo-2 {
+        display: block;
+    }
+
+    .logo svg {
+        height: 26px;
+    }
+
+    .tabs {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        z-index: 999;
+        top: 0;
+        right: -120%;
+        flex-direction: column;
+        align-items: flex-start;
+        background: var(--bg);
+        padding: 60px 20px;
+        gap: 0;
+    }
+
+    .items {
+        width: 100%;
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .theme {
+        display: none;
+    }
+
+    .open-menu {
+        right: 0 !important;
+    }
+
+    .connection_action {
+        width: 150px;
+    }
+
+    a {
+        display: block;
+        width: 100%;
+    }
+
+    a .tab_item {
+        width: 100%;
+        height: 65px;
+        border-bottom: 1px solid var(--bg-lightest);
+        padding: 0 20px;
+    }
+
+    .handburger {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 2px;
+        width: 40px;
+        height: 40px;
+        z-index: 9999;
+    }
+
+    #handburger {
+        width: 24px;
+        height: 14px;
+        position: relative;
+        transform: rotate(0deg);
+        transition: 0.5s ease-in-out;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #handburger span {
+        display: block;
+        position: absolute;
+        height: 2px;
+        width: 24px;
+        background: #FFFFFF;
+        opacity: 1;
+        left: 0;
+        transform: rotate(0deg);
+        transition: 0.25s ease-in-out;
+    }
+
+    #handburger span:nth-child(1) {
+        top: 0px;
+    }
+
+    #handburger span:nth-child(2),
+    #handburger span:nth-child(3) {
+        top: 6px;
+    }
+
+    #handburger span:nth-child(4) {
+        top: 12px;
+    }
+
+
+    #handburger.open span:nth-child(1) {
+        top: 10px;
+        width: 0%;
+        left: 50%;
+    }
+
+    #handburger.open span:nth-child(2) {
+        -webkit-transform: rotate(45deg);
+        -moz-transform: rotate(45deg);
+        -o-transform: rotate(45deg);
+        transform: rotate(45deg);
+    }
+
+    #handburger.open span:nth-child(3) {
+        -webkit-transform: rotate(-45deg);
+        -moz-transform: rotate(-45deg);
+        -o-transform: rotate(-45deg);
+        transform: rotate(-45deg);
+    }
+
+    #handburger.open span:nth-child(4) {
+        top: 18px;
+        width: 0%;
+        left: 50%;
+    }
 }
 </style>

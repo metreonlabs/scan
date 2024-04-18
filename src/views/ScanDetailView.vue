@@ -65,7 +65,8 @@
                                 <td>Source transaction hash:</td>
                                 <td>
                                     <a v-if="event.fromTrxHash"
-                                        :href="`${$chain(event.fromChainId).scan}/tx/${event.fromTrxHash}`" target="_blank">
+                                        :href="`${$chain(event.fromChainId).scan}/tx/${event.fromTrxHash}`"
+                                        target="_blank">
                                         <div class="hash">
                                             <div class="img"><img :src="$chain(event.fromChainId).image" alt=""></div>
                                             <p>{{ event.fromTrxHash }}</p>
@@ -106,7 +107,8 @@
                             <tr>
                                 <td>Source user application:</td>
                                 <td>
-                                    <a :href="`${$chain(event.fromChainId).scan}/address/${event.sender}`" target="_blank">
+                                    <a :href="`${$chain(event.fromChainId).scan}/address/${event.sender}`"
+                                        target="_blank">
                                         <div class="hash">
                                             <div class="img"><img :src="$chain(event.fromChainId).image" alt=""></div>
                                             <p>{{ event.sender }}</p>
@@ -122,7 +124,8 @@
                             <tr>
                                 <td>Destination user application:</td>
                                 <td>
-                                    <a :href="`${$chain(event.toChainId).scan}/address/${event.receiver}`" target="_blank">
+                                    <a :href="`${$chain(event.toChainId).scan}/address/${event.receiver}`"
+                                        target="_blank">
                                         <div class="hash">
                                             <div class="img"><img :src="$chain(event.toChainId).image" alt=""></div>
                                             <p>{{ event.receiver }}</p>
@@ -141,7 +144,7 @@
                                     <div class="token">
                                         <div class="img"><img :src="$currencyAddress(token.tokenId).image" alt=""></div>
                                         <p>{{ $fromWei(token.amount) }} <span>{{ $currencyAddress(token.tokenId).symbol
-                                        }}</span></p>
+                                                }}</span></p>
                                     </div>
                                 </td>
                             </tr>
@@ -302,12 +305,13 @@ export default {
     border-radius: 8px;
     border: 2px solid var(--bg-lighter, #0C171A);
     background: var(--bg-light, #0C171A);
-    width: 100%;
+    max-width: 100%;
     margin-top: 30px;
+    overflow-x: auto;
 }
 
 table {
-    width: 100%;
+    min-width: 1000px;
 }
 
 .tbody {
@@ -451,5 +455,22 @@ td:first-child {
     /* 21px */
     letter-spacing: 0.28px;
     word-wrap: break-word;
+}
+
+@media screen and (max-width: 1000px) {
+    #section {
+        margin-top: 120px;
+        padding-bottom: 40px;
+    }
+
+    .title {
+        flex-direction: column;
+        max-width: 100%;
+        overflow: hidden;
+    }
+
+    tbody {
+        height: 60px;
+    }
 }
 </style>

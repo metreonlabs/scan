@@ -117,7 +117,7 @@ import SearchIcon from '../components/icons/SearchIcon.vue';
 import OngoingIcon from '../components/icons/OngoingIcon.vue';
 import FailedfulIcon from '../components/icons/FailedfulIcon.vue';
 import SuccessfulIcon from '../components/icons/SuccessfulIcon.vue';
-</script >
+</script>
 
 <script>
 import { fetchTransactions, fineHash, fineId } from '../scripts/scan';
@@ -175,6 +175,7 @@ export default {
 .explore_title {
     text-align: center;
     width: 560px;
+    max-width: 100%;
 }
 
 .explore_title h3 {
@@ -205,6 +206,7 @@ export default {
     align-items: center;
     justify-content: space-between;
     width: 1240px;
+    max-width: 100%;
     margin-top: 120px;
 }
 
@@ -242,6 +244,7 @@ export default {
     border: 1px solid var(--bg-lightest, #0C1A33);
     background: var(--bg-dark, #04080D);
     overflow: hidden;
+    max-width: 100%;
 }
 
 .search input {
@@ -273,12 +276,12 @@ export default {
 }
 
 .explore_table {
-    width: 1240px;
+    max-width: 100%;
+    overflow-x: auto;
     margin-top: 30px;
     border-radius: 15px;
     border: 2px solid var(--background-lighter, #091121);
     background: var(--background-dark, #04080D);
-    overflow: hidden;
 }
 
 .thead {
@@ -310,7 +313,7 @@ td:nth-child(5) {
 }
 
 table {
-    width: 100%;
+    min-width: 1000px;
 }
 
 thead td {
@@ -410,5 +413,44 @@ thead td {
 
 td:nth-child(5) .event_hash {
     justify-content: flex-end;
+}
+
+@media screen and (max-width:1000px) {
+    .explore_title h3 {
+        font-size: 26px;
+    }
+
+    .explore_title p {
+        font-size: 14px;
+        padding: 0 10px;
+    }
+
+    .explore_stat {
+        flex-direction: column;
+        margin-top: 80px;
+        gap: 20px;
+    }
+
+    .explore_stat_title {
+        width: 100%;
+        text-align: center;
+    }
+
+    .explore_stat_title p:first-child {
+        font-size: 16px;
+    }
+
+    .explore_stat_title p:last-child {
+        margin-top: 6px;
+        font-size: 14px;
+    }
+
+    .thead {
+        height: 60px;
+    }
+
+    .tbody {
+        height: 70px;
+    }
 }
 </style>
