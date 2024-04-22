@@ -33,7 +33,10 @@
 
                     <div class="connection" style="width: 190px;" v-if="$route.name == 'scan'">
                         <div class="theme">
-                            <SunIcon />
+                            <select name="network" id="network">
+                                <option value="mainnet">Mainnet</option>
+                                <option value="testnet">Testnet</option>
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -46,7 +49,10 @@
                     </div>
 
                     <div class="theme">
-                        <SunIcon />
+                        <select name="network" id="network">
+                            <option value="mainnet">Mainnet</option>
+                            <option value="testnet">Testnet</option>
+                        </select>
                     </div>
                 </div>
                 <div class="handburger">
@@ -65,7 +71,7 @@
 <script setup>
 import ScanLogo from '../components/icons/ScanLogo.vue';
 import SearchIcon from '../components/icons/SearchIcon.vue';
-import SunIcon from '../components/icons/SunIcon.vue';
+// import SunIcon from '../components/icons/SunIcon.vue';
 import OutIcon from './icons/OutIcon.vue';
 </script>
 
@@ -221,16 +227,6 @@ a .tab_item svg {
     margin-top: 2px;
 }
 
-.theme {
-    border-radius: 4px;
-    background: var(--background-lighter, #091121);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-}
-
 .handburger {
     display: none;
     cursor: pointer;
@@ -242,6 +238,23 @@ a .tab_item svg {
 
 .logo-2 {
     display: none;
+}
+
+.theme select {
+    border-radius: 4px;
+    background: var(--background-lighter, #091121);
+    height: 40px;
+    width: 120px;
+    border: none;
+    outline: none;
+    color: var(--tx-normal);
+    font-weight: 400;
+    padding: 0 10px;
+}
+
+.theme select option {
+    padding: 16px;
+    color: var(--tx-normal);
 }
 
 @media screen and (max-width: 1000px) {
@@ -279,10 +292,6 @@ a .tab_item svg {
         width: 100%;
         flex-direction: column;
         gap: 0;
-    }
-
-    .theme {
-        display: none;
     }
 
     .open-menu {
