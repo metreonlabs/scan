@@ -1,28 +1,12 @@
 @import './base.css';
 
-@font-face {
-  font-family: Matter;
-  src: url('/fonts/Matter-Regular.ttf');
-  font-weight: 400;
-}
-
-@font-face {
-  font-family: Matter;
-  src: url('/fonts/Matter-Medium.ttf');
-  font-weight: 500;
-}
-
-@font-face {
-  font-family: Matter;
-  src: url('/fonts/Matter-SemiBold.ttf');
-  font-weight: 600;
-}
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap');
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Matter;
+  font-family: "Lexend", sans-serif;
   text-decoration: none;
   transition: .2s;
 }

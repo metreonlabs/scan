@@ -402,7 +402,7 @@ thead td {
 
 .event_hash p {
     color: var(--tx-semi, #8B909E);
-    font-family: Matter;
+    /* font-family: Matter; */
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
