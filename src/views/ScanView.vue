@@ -4,7 +4,7 @@
             <div class="explore">
                 <div class="explore_title">
                     <h3>Explore Metreon Messages</h3>
-                    <p>Track all cross-chain messages passed by Metreon across Areon, Ethereum, Polygon, BNB Chain, and
+                    <p>Track all cross-chain messages passed by Metreon across Areon, Polygon, BNB Chain, and
                         more.</p>
                 </div>
 
