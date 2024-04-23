@@ -136,9 +136,9 @@
                             </tr>
                         </tbody>
                     </div>
-                    <div class="tbody" v-if="event.tokens.length > 0">
+                    <div class="tbody">
                         <tbody>
-                            <tr>
+                            <tr v-if="event.tokens.length > 0">
                                 <td>Tokens transferred:</td>
                                 <td v-for="token, index in event.tokens" :key="index">
                                     <div class="token">
@@ -146,6 +146,12 @@
                                         <p>{{ $fromWei(token.amount) }} <span>{{ $currencyAddress(token.tokenId).symbol
                                                 }}</span></p>
                                     </div>
+                                </td>
+                            </tr>
+                            <tr else>
+                                <td>Tokens transferred:</td>
+                                <td class="nonce">
+                                    None
                                 </td>
                             </tr>
                         </tbody>

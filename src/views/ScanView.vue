@@ -124,6 +124,13 @@ import { fetchTransactions, fineHash, fineId } from '../scripts/scan';
 import { notify } from '../reactives/notify';
 import { format } from 'timeago.js';
 export default {
+
+    watch: {
+        '$store.state.network': function () {
+            console.log(this.network);
+            this.getEvents();
+        }
+    },
     data() {
         return {
             search: '',
@@ -141,7 +148,7 @@ export default {
         fineHash: fineHash,
         getEvents: async function () {
             this.loading = true;
-            const response = await fetchTransactions();
+            const response = await fetchTransactions(this.$store.state.network);
             this.events = response.data;
             this.total = response.total;
             this.loading = false;

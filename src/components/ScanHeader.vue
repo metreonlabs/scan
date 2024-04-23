@@ -33,9 +33,9 @@
 
                     <div class="connection" style="width: 190px;" v-if="$route.name == 'scan'">
                         <div class="theme">
-                            <select name="network" id="network">
-                                <option value="mainnet">Mainnet</option>
-                                <option value="testnet">Testnet</option>
+                            <select name="network" id="network" @change="updateNetwork">
+                                <option :selected="$store.state.network == 'mainnet'" value="mainnet">Mainnet</option>
+                                <option :selected="$store.state.network == 'testnet'" value="testnet">Testnet</option>
                             </select>
                         </div>
                     </div>
@@ -49,9 +49,9 @@
                     </div>
 
                     <div class="theme">
-                        <select name="network" id="network">
-                            <option value="mainnet">Mainnet</option>
-                            <option value="testnet">Testnet</option>
+                        <select name="network" id="network" @change="updateNetwork">
+                            <option :selected="$store.state.network == 'mainnet'" value="mainnet">Mainnet</option>
+                            <option :selected="$store.state.network == 'testnet'" value="testnet">Testnet</option>
                         </select>
                     </div>
                 </div>
@@ -84,6 +84,10 @@ export default {
         };
     },
     methods: {
+        updateNetwork: function (e) {
+            console.log(e);
+            this.$store.commit('setNetwork', e.target.value);
+        },
         onDrawer() {
             this.$refs["handburger"].classList.toggle("open");
             this.$refs["menu"].classList.toggle("open-menu");
@@ -274,8 +278,13 @@ a .tab_item svg {
         height: 26px;
     }
 
+    .connection {
+        width: fit-content !important;
+    }
+
     .tabs {
         position: fixed;
+        justify-content: unset !important;
         width: 100%;
         height: 100%;
         z-index: 999;
@@ -285,7 +294,11 @@ a .tab_item svg {
         align-items: flex-start;
         background: var(--bg);
         padding: 60px 20px;
-        gap: 0;
+        gap: 60px;
+    }
+
+    .theme select {
+        width: 200px;
     }
 
     .items {

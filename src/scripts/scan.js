@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-export async function fetchTransactions(page = 1) {
+export async function fetchTransactions(network, page = 1) {
     try {
-        const response = await axios.get(`https://metreonhack.azurewebsites.net/messages?page=${page}`);
+        const response = await axios.get(`https://metreonhack.azurewebsites.net/messages?network=${network}&page=${page}`);
         return response.data.data;
     } catch (error) {
         console.error(error);
